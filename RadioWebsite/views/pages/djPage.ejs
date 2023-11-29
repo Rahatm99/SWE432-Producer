@@ -29,7 +29,7 @@
                     
                             <!-- Generate option lists bassed on variables passed to page from server.ejs-->
                             <% tOption.forEach(function(option){ %>
-                            <option><%= option.Timeslot %> </option>
+                            <option><%= option.timeslot %> </option>
                             <% }); %>
                            
                             
@@ -74,7 +74,7 @@
                             
                                 <!-- Generate option lists bassed on variables passed to page from server.ejs-->
                                 <% plOptions.forEach(function(option){ %>
-                                    <option><%= option.Name %> </option>
+                                    <option><%= option.name %> </option>
                                     <% }); %>
                             
                            
@@ -99,7 +99,7 @@
                         
                             <!-- Generate option lists bassed on variables passed to page from server.ejs-->
                             <% sOption.forEach(function(option){ %>
-                                <option><%= option.Title %> </option>
+                                <option><%= option.name %> </option>
                                 <% }); %>
                        
                     </select>

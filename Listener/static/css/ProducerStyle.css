@@ -1,0 +1,304 @@
+:root{
+    --Primary-Cream: #EDE5DA;
+    --Secondary-Mocha: #827063;
+    --Secondary-Cedar: #52443E;
+    --Accent-Light-Cedar: #9C8677;
+    --Accent-Light-Mocha: #B4A095;
+    --Accent-Dark-Cedar: #382e29;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+body{
+    background-color: var(--Primary-Cream);
+    padding: 0;
+    margin: 0;
+}
+
+nav{
+    background-color: var(--Accent-Light-Mocha);
+    height: max(4vh,60px);
+    display: flex;
+    position: fixed;
+    width: 99.5vw;
+    z-index: 1;
+}
+
+
+/*this is your main wrapper around all elements*/
+.Content{
+    display: flex;
+    padding-top: max(4vh,60px);
+    min-height: 100dvh;
+    bottom: 0;
+    justify-content: center;
+    font-size: calc(1rem + .2vh);
+}
+
+
+@media only screen and (min-width: 160rem){
+    .Content{
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 64rem){
+    .Content{
+        display: flex;
+        padding-top: max(4vh,60px);
+        justify-content: center;
+        font-size: .75rem;
+    }
+}
+
+.NavImg{
+    background-color: var(--Secondary-Cedar);
+    border-radius: max(10%,10px);
+    height: max(2.5vh,50px);
+    margin-left: 40px;
+    margin-right: 20px;
+    width: max(2.5vh,50px);
+}
+
+/* declare your amount of columns, 3 for example would be 1fr 1fr 1fr (if you want them to have equal width)*/
+.MainGrid{
+    background-color: var(--Secondary-Mocha);
+    width: 100%;
+    margin-top: 5em;
+    margin-left: calc(16vw - 1.5em);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Main Column */
+.TimeslotBox{
+    display: grid; 
+    grid-template-rows: 5vh 5vh 25vh 20vh 10vh ; 
+    height: 90%;
+    width: calc(max(25em,60vw)/2);
+    row-gap:2em; 
+    max-height:90vh;
+}
+
+.TimeslotBox .Text{
+    color: var(--Secondary-Cedar);
+    font-size: 1.2rem;
+    font-family: Helvetica;
+    font-weight: 600;
+}
+
+.PlayListBox {
+    display: flexbox;
+    background-color: var(--Secondary-Cedar);
+    border-radius: 10px; /* Adjust the radius to your preference */
+    overflow: auto; /* Add this property to enable scrolling if the content exceeds the box size */
+    
+    /* Adjust the width and height as needed */
+    height: 300px; /* You can use a specific value like pixels or percentage */
+}
+
+/* Example: Adjust the size of child elements */
+.PlayListBox li {
+    /* Styles for list items inside .PlayListBox */
+    /* You can adjust these based on your design */
+    padding: 10px;
+    margin: 5px;
+    background-color: #d8c2b6;
+    border-radius: 5px;
+}
+
+.FormBox {
+    display: flexbox;
+    margin-top: auto;
+}
+
+/*nav bar elements, unless you need to deviate heavily from the plan, you shouldn't need to edit this*/
+.NavLeft{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.NavRight{
+    margin-left: auto;
+}
+
+.NavRight ul{
+    margin-top: 0;
+}
+
+.NavRight li{
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: max(4vh,60px);
+    text-decoration: none;
+    border-left: 2px solid var(--Secondary-Cedar);
+}
+
+.NavRight li:nth-child(1){
+    border-left: 0;
+}
+
+.NavRight li:nth-last-child(1){
+    background-color: var(--Secondary-Mocha);
+}
+
+nav .Text{
+    color:var(--Secondary-Cedar);
+    font-size: 1.2rem;
+    font-family: Helvetica;
+    font-weight: 600;
+}
+/*nav section end*/
+
+/* Button for booking the DJ */
+.BookButton {
+    background-color: var(--Secondary-Cedar);
+    color: var(--Primary-Cream);
+    border: none;
+    padding: 0.3em 0.7em;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.9s ease;
+}
+
+.BookButton:hover {
+    background-color: var(--Primary-Cream);
+    color: var(--Accent-Dark-Cedar);
+    transition: background-color 0.9s ease;
+}
+
+button{
+    padding: .2em .4em .2em .4em;
+    font-size: 1.2em;
+    font-family: Helvetica;
+    border-radius: .3em;
+}
+
+
+/*Sidebar for the timeslots*/
+.Sidebar{
+    padding-top: max(4vh,60px);
+    position: fixed;
+    height: calc(100% - 40px); /* hides the taskbar (windows 10) */
+    width: calc(16vw - 2em);
+    background-color: var(--Secondary-Mocha);
+    overflow-y: scroll; /*scroll bar*/
+}
+
+.Sidebar .Text{
+    font-size: 1.5em;
+    font-family: Helvetica;
+    color: var(--Primary-Cream);
+    margin: 0;
+    padding: 1em 0 1em 0;
+    text-align: center;
+    background-color: var(--Accent-Dark-Cedar);
+}
+
+/* Styling for the list of DJ people */
+.DjList {
+    background-color: var(--Secondary-Mocha);
+    padding: 1em;
+    overflow-y: scroll;
+    max-height: 90vh; 
+}
+
+.DjList .Text{
+    font-size: 1.5em;
+    font-family: Helvetica;
+    color: var(--Primary-Cream);
+    margin: 0;
+    padding: 1em 0 1em 0;
+    text-align: center;
+    background-color: var(--Accent-Dark-Cedar);
+}
+/*Unused right now*/
+
+/* Style for individual items in DJ list */
+.DjPeopleList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.DjPeopleList li {
+    padding: 0.5em 0;
+    border-bottom: 2px solid var(--Secondary-Cedar);
+    border-top: 2px solid var(--Secondary-Cedar);
+    border-left: 2px solid var(--Secondary-Cedar);
+    border-right: 2px solid var(--Secondary-Cedar);
+}
+
+/*Timeslots styling in the sidebar*/
+.TimeslotsList {
+    list-style: none;
+    padding: 0;
+    margin: auto;
+}
+
+.TimeslotsList li {
+    margin: 0;
+    padding: 0;
+}
+
+.TimeslotsList a {
+    display: block; 
+    padding: 3em;
+    height: auto;
+    font-family: Helvetica;
+    color: var(--Primary-Cream);
+    font-weight: bold;
+    background-color: var(--Secondary-Cedar);
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.TimeslotsList a:hover {
+    background-color: var(--Secondary-Mocha); /* Change the background color on hover */
+}
+
+/* Style for scrollbar */
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #bbbbbb;
+}
+
+
+/* Initially hide the second grid */
+.SongList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.SongList li {
+    padding: 0.5em 0;
+    border-bottom: 2px solid var(--Secondary-Cedar);
+    border-top: 2px solid var(--Secondary-Cedar);
+    border-left: 2px solid var(--Secondary-Cedar);
+    border-right: 2px solid var(--Secondary-Cedar);
+}
+
+/* Class to hide a grid */
+.hidden {
+    display: none;
+}

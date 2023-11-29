@@ -161,9 +161,9 @@ tsInfo.addEventListener("change", async function(){
     await fetch("http://localhost:8080/tsLookup?search=" + tsSelected).then(timeSlot => timeSlot.json()).then(results => info = results);
 
     //console.log("info: " + info.timeslot);
-    tsField.textContent = info.Timeslot;
-    djField.textContent = info.Dj;
-    plField.textContent = info.Playlist;
+    tsField.textContent = info.timeslot;
+    djField.textContent = info.dj;
+    plField.textContent = info.playlist;
 
 
 });
@@ -182,10 +182,10 @@ plList.addEventListener("click",  async function(){
 
     await fetch("http://localhost:8080/filterSongs?search=" + sText).then(songList => songList.json()).then(results => songs = results);
 
-    console.log("songs: " + songs.Songs);
+    console.log("songs: " + songs.songs);
     
     
-    filter = JSON.stringify(songs.Songs).toUpperCase();//input.options[input.selectedIndex].text.toUpperCase();
+    filter = JSON.stringify(songs.songs).toUpperCase();//input.options[input.selectedIndex].text.toUpperCase();
 
     console.log(filter);
 

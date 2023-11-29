@@ -1,0 +1,116 @@
+[
+	{
+		"Name" : "playlist1",
+		"Songs" : [
+			{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c2"
+  },
+  "Title": "What a Wonderful World",
+  "Artist": "Louis Armstrong",
+  "AlbumName": "",
+  "ImagePath": "Louis_Armstrong_What_a_Wonderful_World.jpg",
+  "Description": "",
+  "Length": "2:19"
+},
+{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c3"
+  },
+  "Title": "Giant Steps",
+  "Artist": "John Coltrane",
+  "AlbumName": "Giant Steps",
+  "ImagePath": "Coltrane_Giant_Steps.jpg",
+  "Description": "",
+  "Length": "4:48"
+},{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c4"
+  },
+  "Title": "Fly Me to The Moon",
+  "Artist": "Frank Sinatra",
+  "AlbumName": "Giant Steps",
+  "ImagePath": "qe9o9pdvuu49b_600.jpg",
+  "Description": "",
+  "Length": "2:28"
+},{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c5"
+  },
+  "Title": "'Round Midnight",
+  "Artist": "Thelonious Monk",
+  "AlbumName": "",
+  "ImagePath": "round-midnight.jpg",
+  "Description": "",
+  "Length": "6:45"
+}
+
+		]
+	},
+	{
+		"Name" : "playlist2",
+		"Songs" : [
+			{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c6"
+  },
+  "Title": "All Blue",
+  "Artist": "Miles Davis",
+  "AlbumName": "Kind of Blue",
+  "ImagePath": "10-KINDOFBLUE.jpg",
+  "Description": "",
+  "Length": "11:34"
+},{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c7"
+  },
+  "Title": "A Night in Tunisia",
+  "Artist": "Dizzy Gillespie",
+  "AlbumName": "",
+  "ImagePath": "maxresdefault.jpg",
+  "Description": "",
+  "Length": "7:08"
+},{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c8"
+  },
+  "Title": "Goodbye Pork Pie Hat",
+  "Artist": "Charles Mingus",
+  "AlbumName": "Mingus Mingus Mingus Mingus Mingus",
+  "ImagePath": "Charles_Mingus_Mingus_Mingus_Mingus_Mingus_Mingus.jpg",
+  "Description": "",
+  "Length": "4:48"
+},{
+  "_id": {
+    "$oid": "655501a0566a253854bef5c9"
+  },
+  "Title": "Stolen Moments",
+  "Artist": "Oliver Nelson",
+  "AlbumName": "The Blues and the Abstract Truth",
+  "ImagePath": "The_Blues_and_the_Abstract_Truth_(Oliver_Nelson_album_-_cover_art).jpg",
+  "Description": "",
+  "Length": "8:53"
+},{
+  "_id": {
+    "$oid": "655501a0566a253854bef5ca"
+  },
+  "Title": "Cantaloupe Island",
+  "Artist": "Herbie Hancock",
+  "AlbumName": "Empyrean Isles",
+  "ImagePath": "Empisle_hancock.jpg",
+  "Description": "",
+  "Length": "5:33"
+},{
+  "_id": {
+    "$oid": "655501a0566a253854bef5cb"
+  },
+  "Title": "Song For My Father",
+  "Artist": "Horace Silver",
+  "AlbumName": "Song For My Father",
+  "ImagePath": "Song_for_My_Father_(Horace_Silver_album_-_cover_art).jpg",
+  "Description": "",
+  "Length": "7:18"
+}
+		]
+	}
+]

@@ -1,0 +1,95 @@
+[
+      {
+        "timeslot": "9:00 AM - 10:00 AM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": [
+          {
+              "Title": "What a Wonderful World",
+              "Artist": "Louis Armstrong",
+              "AlbumName": "",
+              "ImagePath": "Louis_Armstrong_What_a_Wonderful_World.jpg",
+              "Description": ""
+          },
+          {
+              "Title": "Giant Steps",
+              "Artist": "John Coltrane",
+              "AlbumName": "Giant Steps",
+              "ImagePath": "Coltrane_Giant_Steps.jpg",
+              "Description": ""
+          }
+        ]
+      },
+      {
+        "timeslot": "10:00 AM - 11:00 AM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "11:00 AM - 12:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "12:00 PM - 1:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "1:00 PM - 2:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "2:00 PM - 3:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "3:00 PM - 4:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "4:00 PM - 5:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "5:00 PM - 6:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "6:00 PM - 7:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "7:00 PM - 8:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "8:00 PM - 9:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      },
+      {
+        "timeslot": "9:00 PM - 10:00 PM",
+        "dj": "DJ Name",
+        "playlist": "Playlist Name",
+        "songs": []
+      }
+    ]

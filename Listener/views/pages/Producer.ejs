@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/prodHead') %>
+</head>
+
+<body>
+    <nav>
+        <%- include('../partials/Navbar') %>
+    </nav>
+
+    <%- include('../partials/prodSidebar') %>
+
+    <div class="Content">
+        <div class ="MainGrid">
+            <div class="TimeslotBox" style="margin-left: .5em; font-family: Helvetica;">
+                <h1 style="padding: 0%;">Playlist Info</h1>
+                <h2 id="timeslot"></h2>
+                <h3 id="mainSongList" class="PlayListBox"></h3>
+                
+                <form action="/addSong" method="POST" class="FormBox">
+                <select id="selectedSong" name="selectedSong" required>
+                    <% DBsongs.forEach(song => { %>
+                        <option value="<%= song.title %>"><%= song.title %> by <%= song.artist %></option>
+                    <% }); %>
+                </select>
+
+                <select id="selectedTimeslot" name="selectedTimeslot" required>
+                    <% playlist.forEach(item => { %>
+                        <option value="<%= item.timeslot %>"><%= item.timeslot %></option>
+                    <% }); %>
+                </select>
+                
+                <button type="submit">Add Song</button>
+                </form>
+
+                <h4 id="songPlaying">Now Playing: Nothing | By: | Length:</h4>
+                <p id="demo"></p>
+
+
+                <script>
+                    //fills the playlist initially and changes based on the timeslot.
+                    fillPlaylist(0);
+                
+                    async function fillPlaylist(index) {
+                        
+                        const playlist = JSON.parse(`<%- JSON.stringify(playlist) %>`);
+
+                        const timeSlotElement = document.getElementById('timeslot');
+                        const SongListElement = document.getElementById('mainSongList');
+                
+                        timeSlotElement.textContent = '';
+                        SongListElement.innerHTML = '';
+                
+                        const timeItem = document.createElement('p');
+                        timeItem.textContent = playlist[index].timeslot;
+                        timeSlotElement.appendChild(timeItem);
+                
+                        playlist[index].songs.forEach(song => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${song.title} by ${song.artist} | Length: ${song.length}`;
+                            SongListElement.appendChild(listItem);
+                        });
+                    }
+                
+                    async function displayPlaylist(index) {
+                        const timeSlotElement = document.getElementById('timeslot');
+                        timeSlotElement.textContent = timeslots[index].time;
+                
+                        fillPlaylist(index);
+                    }
+                </script>
+            </div>
+
+            <div class="DjList" style="font-family: Helvetica; font-size: 1em; text-align: center;">
+                <h1>DJ List</h1>
+                <!--Search Bar-->
+                <h2>Search:<input type="text" id="searchInput" onkeyup="searchDJs()" placeholder="Enter DJ Name"></h2>
+                
+                <!--Toggles the list shown-->
+                <button onclick="toggleList()">Change DJ/Song</button>
+
+                <ul class="DjPeopleList" id="djList">
+                    <li>DJ Analyze
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+                    
+                    <li>DJ Soda
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Khaled
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Shaq Diesel
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Mango Boy
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ IMissHer
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Asim
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+                    
+                </ul>
+
+                <!--Created in the js file-->
+                <ul class="SongList" id="songList" style="text-align: left;"></ul>
+                <script>
+                    const songs = JSON.parse(`<%- JSON.stringify(DBsongs) %>`);
+                    const songListElement = document.getElementById('songList');
+
+                    songs.forEach(songGroup => {
+                        songGroup.Songs.forEach(song => {
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${song.Title} by ${song.Artist} | Length: ${song.Length}`;
+
+                            const playButton = document.createElement("button");
+                            playButton.textContent = "Play";
+                            playButton.classList.add("BookButton");
+
+                            playButton.addEventListener("click", () => {
+                                playSong(song.Title, song.Artist, song.Length);
+                            });
+
+                            songListElement.appendChild(listItem);
+                            listItem.appendChild(playButton);
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

@@ -34,7 +34,7 @@ app.set('view engine', 'ejs')
 app.listen(8080);
 console.log("Server is listening on port 8080 ");
 
-mongoose.connect('mongodb://127.0.0.1:27017/radio', {useNewUrlParser: true,
+mongoose.connect('mongodb://127.0.0.1:27017/test', {useNewUrlParser: true,
            useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -51,9 +51,9 @@ const Timeslot = require('./models/Timeslot.js')
 
 app.get('/', async function(req, res){
 
-    const plOpt = await Playlist.find({}, {Name: 1, Songs:1});
-    const sOpt = await Song.find({}, {Title: 1});
-    const tOpt = await Timeslot.find({}, {Timeslot:1, Playlist:1, Dj:1 })
+    const plOpt = await Playlist.find({}, {name: 1, songs:1});
+    const sOpt = await Song.find({}, {name: 1});
+    const tOpt = await Timeslot.find({}, {timeslot:1, playlist:1, dj:1 })
 
    console.log('you viewed this page ' + req.session.views['/'] + ' times')
 
@@ -72,24 +72,22 @@ app.post('/plUpdate', async function(req, res){
     const timeSlot = req.body.tSlots
     const song = req.body.songs
 
-    const cPList = await Timeslot.findOne({Timeslot: timeSlot}, {Playlist:1})
+    const cPList = await Timeslot.findOne({timeslot: timeSlot}, {playlist:1})
 
     console.log("Playlist: " + cPList);
 
-    var newSong = await Song.findOne({"Title" : song},{});//{name: song};
+    var newSong = {name: song};
 
-    console.log("New Song :" + newSong);
-
-    var updateLog = await db.collection("playlists").findOneAndUpdate({'Name' : cPList.Playlist}, {$push : {Songs: newSong}});
+    var updateLog = await db.collection("playlists").findOneAndUpdate({'name' : cPList.playlist}, {$push : {songs: newSong}});
 
     console.log ("Song is "+ song);
     console.log("Timeslot is " + timeSlot);
     console.log("Playlist is "+ cPList);
     console.log("UpdateLog : " + updateLog)
 
-    const plOpt = await Playlist.find({}, {Name: 1, Songs:1});
-    const sOpt = await Song.find({}, {Title: 1});
-    const tOpt = await Timeslot.find({}, {Timeslot:1, Playlist:1, Dj:1 })
+    const plOpt = await Playlist.find({}, {name: 1, songs:1});
+    const sOpt = await Song.find({}, {name: 1});
+    const tOpt = await Timeslot.find({}, {timeslot:1, playlist:1, dj:1 })
 
     res.render('pages/djPage', {
         plOptions: plOpt,
@@ -104,11 +102,11 @@ app.get('/filterSongs', async function(req,res){
     const Playlist = require('./models/Playlist.js')
     let search =  req.query.search;
 
-    //console.log("Search : " + search);
+    console.log("Search : " + search);
 
-    let songList = await Playlist.findOne({'Name' : search},{Songs:1});
+    let songList = await Playlist.findOne({'name' : search},{songs:1});
 
-    //console.log("result: " + songList);
+    //console.log(songList);
 
     res.json(songList);
 });
@@ -118,18 +116,44 @@ app.get('/tsLookup', async function(req,res){
     const Playlist = require('./models/Timeslot.js')
     let search =  req.query.search;
 
-    //console.log("Search : " + search);
+    console.log("Search : " + search);
 
-    let tsList = await Timeslot.findOne({'Timeslot' : search},{Timeslot: 1, Dj: 1, Playlist:1});
+    let tsList = await Timeslot.findOne({'timeslot' : search},{timeslot: 1, dj: 1, playlist:1});
 
-    //console.log(tsList)
+    console.log(tsList)
 
     res.json(tsList);
 });
 
-
-
+// producer page
+app.get('/', async function(req, res) {
+    let songslist = await Songs.find();
+    let playlistDB = await Playlist.find();
   
+    res.render('pages/index', { 
+      DBsongs: songslist, 
+      timeslots: timeslots,
+      playlist : playlistDB
+     });
+  });  
 
+// producer add songs
+app.post('/addSong', async (req, res) => {
+    const selectedSongTitle = req.body.selectedSong;
+    const formTimeslot = req.body.selectedTimeslot;
 
+    const selectedSong = await Songs.findOne({title: selectedSongTitle});
+    if (!selectedSong) {
+        return res.status(404).json({ error: 'Selected song not found' });
+    }
 
+    const playlist = await Playlist.findOne({timeslot: formTimeslot});
+    if (!playlist) {
+        return res.status(404).json({error: 'Playlist not found'});
+    }
+
+    playlist.songs.push(selectedSong);
+    await playlist.save();
+
+    res.redirect('/');
+});
