@@ -19,22 +19,22 @@
                 <h3 id="mainSongList" class="PlayListBox"></h3>
                 
                 <form action="/addSong" method="POST" class="FormBox">
-                <select id="selectedSong" name="selectedSong" required>
-                    <% DBsongs.forEach(song => { %>
-                        <option value="<%= song.title %>"><%= song.title %> by <%= song.artist %></option>
-                    <% }); %>
-                </select>
+                    <select id="selectedSong" name="selectedSong" required>
+                        <% DBsongs.forEach(song => { %>
+                            <option value="<%= song.Title %>"><%= song.Title %> by <%= song.Artist %></option>
+                        <% }); %>
+                    </select>
+    
+                    <select id="selectedTimeslot" name="selectedTimeslot" required>
+                        <% playlist.forEach(item => { %>
+                            <option value="<%= item.timeslot %>"><%= item.timeslot %></option>
+                        <% }); %>
+                    </select>
+                    
+                    <button type="submit">Add Song</button>
+                    </form>
 
-                <select id="selectedTimeslot" name="selectedTimeslot" required>
-                    <% playlist.forEach(item => { %>
-                        <option value="<%= item.timeslot %>"><%= item.timeslot %></option>
-                    <% }); %>
-                </select>
-                
-                <button type="submit">Add Song</button>
-                </form>
-
-                <h4 id="songPlaying">Now Playing: Nothing | By: | Length:</h4>
+                <h4 id="songPlaying">Now Playing: Nothing | By: | Album:</h4>
                 <p id="demo"></p>
 
 
@@ -58,14 +58,16 @@
                 
                         playlist[index].songs.forEach(song => {
                             const listItem = document.createElement('li');
-                            listItem.textContent = `${song.title} by ${song.artist} | Length: ${song.length}`;
+                            listItem.textContent = `${song.Title} by ${song.Artist} | Album: ${song.AlbumName}`;
                             SongListElement.appendChild(listItem);
                         });
                     }
                 
                     async function displayPlaylist(index) {
+                        const playlist = JSON.parse(`<%- JSON.stringify(playlist) %>`);
+
                         const timeSlotElement = document.getElementById('timeslot');
-                        timeSlotElement.textContent = timeslots[index].time;
+                        timeSlotElement.textContent = playlist[index].timeslot;
                 
                         fillPlaylist(index);
                     }
@@ -123,23 +125,21 @@
                 <script>
                     const songs = JSON.parse(`<%- JSON.stringify(DBsongs) %>`);
                     const songListElement = document.getElementById('songList');
-
-                    songs.forEach(songGroup => {
-                        songGroup.Songs.forEach(song => {
-                            const listItem = document.createElement('li');
-                            listItem.textContent = `${song.Title} by ${song.Artist} | Length: ${song.Length}`;
-
-                            const playButton = document.createElement("button");
-                            playButton.textContent = "Play";
-                            playButton.classList.add("BookButton");
-
-                            playButton.addEventListener("click", () => {
-                                playSong(song.Title, song.Artist, song.Length);
-                            });
-
-                            songListElement.appendChild(listItem);
-                            listItem.appendChild(playButton);
+                
+                    songs.forEach(song => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${song.Title} by ${song.Artist} | Album: ${song.AlbumName}`;
+                        
+                        const playButton = document.createElement("button");
+                        playButton.textContent = "Play";
+                        playButton.classList.add("BookButton");
+                        
+                        playButton.addEventListener("click", () => {
+                            playSong(song.Title, song.Artist, song.AlbumName);
                         });
+
+                        songListElement.appendChild(listItem);
+                        listItem.appendChild(playButton);
                     });
                 </script>
             </div>

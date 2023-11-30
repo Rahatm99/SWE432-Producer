@@ -5,6 +5,7 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname +'/static'));
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://127.0.0.1:27017/swe432');
 const db = mongoose.connection;
@@ -127,8 +128,10 @@ app.get('/Producer', async function(req, res) {
   let songslist = await Songs.find();
   let playlistDB = await Playlist.find();
 
+  const songsArray = songslist[0].get("Songs");  
+
   res.render('pages/Producer', { 
-    DBsongs: songslist, 
+    DBsongs: songsArray, 
     timeslots: constTimeslots,
     playlist : playlistDB
    });
@@ -139,7 +142,7 @@ app.post('/addSong', async (req, res) => {
   const selectedSongTitle = req.body.selectedSong;
   const formTimeslot = req.body.selectedTimeslot;
 
-  const selectedSong = await Songs.findOne({title: selectedSongTitle});
+  let selectedSong = await Songs.find({ 'Title': selectedSongTitle });
   if (!selectedSong) {
     return res.status(404).json({ error: 'Selected song not found' });
   }
@@ -152,7 +155,7 @@ app.post('/addSong', async (req, res) => {
   playlist.songs.push(selectedSong);
   await playlist.save();
 
-  res.redirect('/');
+  res.redirect('/Producer');
 });
 
 
